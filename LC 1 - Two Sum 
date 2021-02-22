@@ -1,0 +1,42 @@
+Brute force solution
+Idea : use two for loops and check target - nums[i] = nums[j]
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int[] arr = new int[2];
+        for(int i=0;i<nums.length;i++){
+            for(int j= i+1;j<nums.length;j++){
+                if(target-nums[i]==nums[j]){
+                    arr[0]=i;
+                    arr[1]=j;
+                    return arr;
+                
+            }
+            }
+            
+        }
+        return null;
+    }
+}
+Time complexity: as it is traversing the array twice, complexity is O(n2)
+Optimised using hashmap
+Store all values into hashmap - nums[i],i using for loop
+Iterate through the array and check whether target - nums[i] is there in the hashmap and number should be equal to the same number.
+class Solution {
+    public int[] twoSum(int[] nums, int target) 
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            map.put(nums[i],i);
+        }
+        for(int i= 0;i<nums.length;i++){
+            int value =target-nums[i];
+            if(map.containsKey(value) && map.get(value)!=i)
+                return new int[] {i,map.get(value)};
+            
+        }
+          return null;  
+        
+    }
+}
+Time complexity: storing values-O(n)
+Traversing through array-O(n)
+O(n)+O(n) =O(n)
