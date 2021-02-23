@@ -1,0 +1,30 @@
+class Solution {
+    public int lastStoneWeight(int[] stones) {
+
+
+    //the given comparator below heapifies in descending order
+
+        PriorityQueue<Integer> queue = new PriorityQueue<>((w1,w2)->w2-w1);
+
+        for(int stone : stones){
+            queue.add(stone);
+        }
+        int firstStone = 0;
+        int secondStone = 0;
+        while(queue.size() > 1){
+            firstStone = queue.poll();
+            secondStone = queue.poll();
+            if(firstStone != secondStone){
+                int anotherStone = Math.abs(secondStone-firstStone);
+                queue.add(anotherStone);
+            }
+        }
+        if(queue.isEmpty()){
+            return 0;
+        }
+        int ans = queue.peek();
+        return ans;
+        
+   
+    }
+}
